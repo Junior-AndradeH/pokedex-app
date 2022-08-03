@@ -1,5 +1,5 @@
 // main class
-class TypesData {
+class SpeciesData {
   // variables
   String? url;
   String? name;
@@ -7,23 +7,23 @@ class TypesData {
   Map<String, dynamic>? map;
 
   List? list;
-  List? types;
+  List? eggGroups;
 
   // constructor
-  TypesData();
+  SpeciesData();
 
   // data
-  TypesData.fromMap(Map<String, dynamic> map) {
+  SpeciesData.fromMap(Map<String, dynamic> map) {
     // map to list
-    types = map["types"];
+    eggGroups = map["egg_groups"];
   }
 
-  TypesData.fromList(List list, int index) {
+  SpeciesData.fromList(List list, int index) {
     // list to map
-    map = Types(list[index]["type"]);
+    map = EggGroups(list[index]);
   }
 
-  Types(Map<String, dynamic> map) {
+  EggGroups(Map<String, dynamic> map) {
     // map to string
     url = map["url"];
     name = map["name"];

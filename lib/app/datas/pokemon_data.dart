@@ -7,6 +7,7 @@ class PokemonData {
   int? weight;
   int? height;
 
+  Map<String, dynamic>? species;
   Map<String, dynamic>? sprites;
 
   List? abilities;
@@ -23,6 +24,7 @@ class PokemonData {
     name = map["name"];
     abilities = map["abilities"];
     forms = map["forms"];
+    species = map["species"];
     sprites = map["sprites"];
     types = map["types"];
     weight = map["weight"];
@@ -36,6 +38,7 @@ class PokemonData {
       "name": name,
       "abilities": abilities,
       "forms": forms,
+      "species": species,
       "sprites": sprites,
       "types": types,
       "weight": weight,

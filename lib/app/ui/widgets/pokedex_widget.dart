@@ -22,6 +22,12 @@ class PokeDexWidget extends StatelessWidget {
   PokedexData? _pokedexData;
   PokemonData? _pokemonData;
 
+  String? _type0;
+  String? _type1;
+
+  Color? _color0;
+  Color? _color1;
+
   // constructor
   PokeDexWidget(this._pokedexData);
 
@@ -41,39 +47,34 @@ class PokeDexWidget extends StatelessWidget {
               ),
             );
           } else if (snapshot.error != null) {
-            // model
-            _pokemonData = PokemonData();
-
-            // return
-            return _inkWell(context, 0, _pokemonData!);
+            return Container();
           } else {
             // model
             _pokemonData = PokemonData.fromMap(snapshot.data!);
 
             // return
-            return _inkWell(context, 1, _pokemonData!);
+            return _inkWell(context, _pokemonData!);
           }
         });
   }
 
-  Widget _inkWell(BuildContext context, int index, PokemonData pokemonData) {
+  Widget _inkWell(BuildContext context, PokemonData pokemonData) {
     // set variables
-    TypesData typesData0 = TypesData.fromMap(pokemonData.types![0]["type"]);
-    TypesData typesData1 = TypesData.fromMap(
-        pokemonData.types!.length <= 1 ? {} : pokemonData.types![1]["type"]);
+    _type0 = TypesData.fromList(pokemonData.types!, 0).name;
+    _type1 = pokemonData.types!.length <= 1
+        ? _type0
+        : TypesData.fromList(pokemonData.types!, 1).name;
 
-    Color color1 = PokeDexModel.of(context).getColor(typesData0.name.toString())!;
-    Color color2 = PokeDexModel.of(context).getColor(
-        pokemonData.types!.length <= 1
-            ? typesData0.name.toString()
-            : typesData1.name.toString())!;
+    _color0 = PokeDexModel.of(context).getColor(_type0.toString())!;
+    _color1 = PokeDexModel.of(context).getColor(_type1.toString())!;
 
     // return
     return InkWell(
       borderRadius: const BorderRadius.all(Radius.circular(15.0)),
       child: Container(
         decoration: BoxDecoration(
-          gradient: PokeDexModel.of(context).getLinearGradient(color1, color2),
+          gradient:
+              PokeDexModel.of(context).getLinearGradient(_color0!, _color1!),
           borderRadius: const BorderRadius.all(Radius.circular(15.0)),
         ),
         width: 180.0,
@@ -81,7 +82,7 @@ class PokeDexWidget extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             _positionedPokeball(context),
-            _positionedTypes(context, index, pokemonData),
+            _positionedTypes(context, pokemonData),
             _positionedSprites(context, pokemonData),
           ],
         ),
@@ -101,12 +102,12 @@ class PokeDexWidget extends StatelessWidget {
     );
   }
 
-  Widget _positionedTypes(
-      BuildContext context, int index, PokemonData pokemonData) {
+  Widget _positionedTypes(BuildContext context, PokemonData pokemonData) {
     // set variables
-    TypesData typesData0 = TypesData.fromMap(pokemonData.types![0]["type"]);
-    TypesData typesData1 = TypesData.fromMap(
-        pokemonData.types!.length <= 1 ? {} : pokemonData.types![1]["type"]);
+    _type0 = TypesData.fromList(pokemonData.types!, 0).name;
+    _type1 = pokemonData.types!.length <= 1
+        ? _type0
+        : TypesData.fromList(pokemonData.types!, 1).name;
 
     // return
     return Positioned(
@@ -128,13 +129,9 @@ class PokeDexWidget extends StatelessWidget {
                     ),
                   ])),
           const SizedBox(height: 20.0),
-          TypesWidget(typesData0),
-          pokemonData.types!.length <= 1
-              ? Container()
-              : const SizedBox(height: 5.0),
-          pokemonData.types!.length <= 1
-              ? Container()
-              : TypesWidget(typesData1),
+          TypesWidget(_type0!),
+          _type0 == _type1 ? Container() : const SizedBox(height: 5.0),
+          _type0 == _type1 ? Container() : TypesWidget(_type1!),
         ],
       ),
     );

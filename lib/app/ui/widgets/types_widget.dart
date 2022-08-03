@@ -1,16 +1,15 @@
 // import
 import 'package:flutter/material.dart';
-import 'package:pokedexapp/app/datas/types_data.dart';
 
 import '../../models/colors_models.dart';
 
 // main class
 class TypesWidget extends StatelessWidget {
-  // variables
-  TypesData? _typesData;
+  // variable
+  String? _name;
 
   // constructor
-  TypesWidget(this._typesData);
+  TypesWidget(this._name);
 
   // widget
   @override
@@ -21,7 +20,7 @@ class TypesWidget extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(100.0)),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-      child: Text(_typesData!.name.toString().toUpperCase(),
+      child: Text(_name!.toString().toUpperCase(),
           style: const TextStyle(
               color: ColorsModel.whiteDark,
               fontWeight: FontWeight.bold,

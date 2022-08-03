@@ -68,6 +68,8 @@ class PokeDexModel extends Model {
         return ColorsModel.steel;
       case "water":
         return ColorsModel.water;
+      default:
+        return ColorsModel.grey;
     }
   }
 

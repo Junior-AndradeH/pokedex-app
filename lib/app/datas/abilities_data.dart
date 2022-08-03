@@ -1,5 +1,5 @@
 // main class
-class TypesData {
+class AbilitiesData {
   // variables
   String? url;
   String? name;
@@ -7,23 +7,17 @@ class TypesData {
   Map<String, dynamic>? map;
 
   List? list;
-  List? types;
 
   // constructor
-  TypesData();
+  AbilitiesData();
 
   // data
-  TypesData.fromMap(Map<String, dynamic> map) {
-    // map to list
-    types = map["types"];
-  }
-
-  TypesData.fromList(List list, int index) {
+  AbilitiesData.fromList(List list, int index) {
     // list to map
-    map = Types(list[index]["type"]);
+    map = Ability(list[index]["ability"]);
   }
 
-  Types(Map<String, dynamic> map) {
+  Ability(Map<String, dynamic> map) {
     // map to string
     url = map["url"];
     name = map["name"];

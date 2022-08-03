@@ -49,7 +49,7 @@ class PokeDexTile extends StatelessWidget {
                   ),
                 );
               } else if (snapshot.error != null) {
-                return _listView(context, []);
+                return _containerNull(context);
               } else {
                 // model
                 PokeDexModel.of(context).setList(snapshot.data!);
@@ -65,7 +65,7 @@ class PokeDexTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       children: [
         const SizedBox(height: 40.0),
-        _container(context),
+        _containerAppBar(context),
         const SizedBox(height: 20.0),
         Wrap(
           direction: Axis.horizontal,
@@ -78,7 +78,28 @@ class PokeDexTile extends StatelessWidget {
     );
   }
 
-  Widget _container(BuildContext context) {
+  Widget _containerNull(BuildContext context){
+    return Container(
+      alignment: Alignment.center,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(image: AssetImage(ImagesModel.iconErrorGrey)),
+            ),
+            width: 50.0,
+            height: 50.0,
+          ),
+          const SizedBox(height: 20.0),
+          const Text("Pokedex não carregada",
+              style: TextStyle(color: ColorsModel.grey, fontWeight: FontWeight.bold, fontSize: 16.0)),
+        ],
+      ),
+    );
+  }
+
+  Widget _containerAppBar(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
