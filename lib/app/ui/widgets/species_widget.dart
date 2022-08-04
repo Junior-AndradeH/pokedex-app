@@ -27,13 +27,9 @@ class SpeciesWidget extends StatelessWidget {
         future: _getFuture(context),
         builder: (context, snapshot) {
           if (!snapshot.hasData || snapshot.error != null) {
-            // model
-            _speciesData = SpeciesData();
-
-            // return
             return _columnNull(context);
           } else {
-            // model
+            // data
             _speciesData = SpeciesData.fromMap(snapshot.data!);
 
             // return
@@ -46,9 +42,9 @@ class SpeciesWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        _sizedBox(context, "Egg Groups", "0.0"),
+        _sizedBox(context, "Egg Groups", "None"),
         const SizedBox(height: 10.0),
-        _sizedBox(context, "Egg Cycle", "0.0"),
+        _sizedBox(context, "Egg Cycle", "None"),
       ],
     );
   }

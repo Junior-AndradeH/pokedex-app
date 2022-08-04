@@ -1,18 +1,22 @@
 // import
 import 'package:flutter/material.dart';
-import 'package:pokedexapp/app/datas/pokedex_data.dart';
+import 'package:pokedexapp/app/datas/pokemon_data.dart';
+import 'package:pokedexapp/app/datas/species_data.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'colors_models.dart';
 
 // main class
-class PokedexModel extends Model {
+class PokemonModel extends Model {
   // static
-  static PokedexModel of(BuildContext context) =>
-      ScopedModel.of<PokedexModel>(context);
+  static PokemonModel of(BuildContext context) =>
+      ScopedModel.of<PokemonModel>(context);
 
   // variables
-  PokedexData? _pokedexData;
+  PokemonData? _pokemonData;
+  SpeciesData? _speciesData;
+
+  String? _text;
 
   List? _list;
 
@@ -23,13 +27,27 @@ class PokedexModel extends Model {
     notifyListeners();
   }
 
-  void setPokedexData(PokedexData pokedexData) {
-    _pokedexData = pokedexData;
+  void setPokemonData(PokemonData pokemonData) {
+    _pokemonData = pokemonData;
+
+    notifyListeners();
+  }
+
+  void setSpeciesData(SpeciesData speciesData) {
+    _speciesData = speciesData;
 
     notifyListeners();
   }
 
   // function
+  String? getString(String text){
+    String letter = text.replaceRange(1, text.length, "");
+    String word = text.replaceRange(0, 1, "");
+    _text = letter.toUpperCase() + word;
+
+    return _text;
+  }
+
   Color? getColor(String text) {
     switch (text) {
       case "bug":
@@ -81,12 +99,20 @@ class PokedexModel extends Model {
     return _list;
   }
 
-  PokedexData? getPokedexData() {
-    if (_pokedexData == null || _pokedexData == PokedexData()) {
-      _pokedexData = null;
+  PokemonData? getPokemonData() {
+    if (_pokemonData == null || _pokemonData == PokemonData()) {
+      _pokemonData = null;
     }
 
-    return _pokedexData;
+    return _pokemonData;
+  }
+
+  SpeciesData? getSpeciesData() {
+    if (_speciesData == null || _speciesData == SpeciesData()) {
+      _speciesData = null;
+    }
+
+    return _speciesData;
   }
 
   LinearGradient? getLinearGradient(Color color1, Color color2) {

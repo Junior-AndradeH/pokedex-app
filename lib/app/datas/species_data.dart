@@ -5,6 +5,7 @@ class SpeciesData {
   String? name;
 
   Map<String, dynamic>? map;
+  Map<String, dynamic>? evolutionChain;
 
   List? list;
   List? eggGroups;
@@ -16,6 +17,7 @@ class SpeciesData {
   SpeciesData.fromMap(Map<String, dynamic> map) {
     // map to list
     eggGroups = map["egg_groups"];
+    evolutionChain = map["evolution_chain"];
   }
 
   SpeciesData.fromList(List list, int index) {

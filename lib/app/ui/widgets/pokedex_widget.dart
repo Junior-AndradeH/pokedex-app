@@ -49,7 +49,7 @@ class PokeDexWidget extends StatelessWidget {
           } else if (snapshot.error != null) {
             return Container();
           } else {
-            // model
+            // data
             _pokemonData = PokemonData.fromMap(snapshot.data!);
 
             // return
@@ -65,8 +65,8 @@ class PokeDexWidget extends StatelessWidget {
         ? _type0
         : TypesData.fromList(pokemonData.types!, 1).name;
 
-    _color0 = PokeDexModel.of(context).getColor(_type0.toString())!;
-    _color1 = PokeDexModel.of(context).getColor(_type1.toString())!;
+    _color0 = PokedexModel.of(context).getColor(_type0.toString())!;
+    _color1 = PokedexModel.of(context).getColor(_type1.toString())!;
 
     // return
     return InkWell(
@@ -74,7 +74,7 @@ class PokeDexWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           gradient:
-              PokeDexModel.of(context).getLinearGradient(_color0!, _color1!),
+              PokedexModel.of(context).getLinearGradient(_color0!, _color1!),
           borderRadius: const BorderRadius.all(Radius.circular(15.0)),
         ),
         width: 180.0,

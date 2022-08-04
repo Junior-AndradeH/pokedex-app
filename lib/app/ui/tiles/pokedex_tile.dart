@@ -30,7 +30,7 @@ class PokeDexTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // set variable
-    _pokedex = PokeDexModel.of(context).getList();
+    _pokedex = PokedexModel.of(context).getList();
 
     // return
     return _pokedex!.isNotEmpty
@@ -52,7 +52,7 @@ class PokeDexTile extends StatelessWidget {
                 return _containerNull(context);
               } else {
                 // model
-                PokeDexModel.of(context).setList(snapshot.data!);
+                PokedexModel.of(context).setList(snapshot.data!);
 
                 // return
                 return _listView(context, snapshot.data!);
@@ -167,7 +167,8 @@ class PokeDexTile extends StatelessWidget {
   // future
   Future<List> _getFuture(BuildContext context) async {
     // get data
-    String url = UrlsModel.pokemonsGet;
+    //String url = UrlsModel.pokemonsGet + "/?limit=151";
+    String url = UrlsModel.pokemonsGet + "/?limit=20";
     Uri uri = Uri.parse(url);
     http.Response response = await http.get(uri);
     List list = response.body == "" ? [] : json.decode(response.body)["results"];

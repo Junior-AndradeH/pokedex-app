@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedexapp/app/datas/abilities_data.dart';
 import 'package:pokedexapp/app/datas/pokemon_data.dart';
+import 'package:pokedexapp/app/models/pokemon_model.dart';
 import 'package:pokedexapp/app/ui/widgets/breeding_widget.dart';
 
 import '../../models/colors_models.dart';
@@ -28,11 +29,17 @@ class AboutView extends StatelessWidget {
     _height = _pokemonData!.height! / 10;
     _weight = _pokemonData!.weight! / 10;
     _ability = AbilitiesData.fromList(_pokemonData!.abilities!, 0).name;
-    _ocult = AbilitiesData.fromList(_pokemonData!.abilities!, 1).name;
+    _ocult = _pokemonData!.abilities!.length <= 1
+        ? ""
+        : AbilitiesData.fromList(_pokemonData!.abilities!, 1).name;
 
-    String species = "Seed";
-    double male = 87.5;
-    double female = 12.5;
+    // convert
+    String ability = PokemonModel.of(context).getString(_ability!)!;
+    String ocult = "(${PokemonModel.of(context).getString(_ocult!)!})";
+
+    String species = "None";
+    double male = 0.0;
+    double female = 0.0;
 
     // return
     return Container(
@@ -48,8 +55,7 @@ class AboutView extends StatelessWidget {
           _sizedBoxDefault(
               context, "Peso", "${_weight!.toStringAsFixed(2)} kg"),
           const SizedBox(height: 10.0),
-          _sizedBoxDefault(context, "Habilidades",
-              "${_ability!.toUpperCase()} (${_ocult!.toUpperCase()})"),
+          _sizedBoxDefault(context, "Habilidades", "$ability $ocult"),
           const SizedBox(height: 20.0),
           const Text("Breeding",
               style: TextStyle(

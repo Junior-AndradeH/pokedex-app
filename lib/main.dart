@@ -5,6 +5,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'app/models/colors_models.dart';
 import 'app/models/pokedex_model.dart';
+import 'app/models/pokemon_model.dart';
 
 // master function
 void main() {
@@ -17,20 +18,23 @@ class PokeDexAPP extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModel<PokeDexModel>(
-      model: PokeDexModel(),
-      child: MaterialApp(
-        theme: ThemeData(
-          primaryColor: ColorsModel.greyDark,
-          colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.grey,
-          ).copyWith(
-            secondary: ColorsModel.greyDark,
+    return ScopedModel<PokedexModel>(
+      model: PokedexModel(),
+      child: ScopedModel<PokemonModel>(
+        model: PokemonModel(),
+        child: MaterialApp(
+          theme: ThemeData(
+            primaryColor: ColorsModel.greyDark,
+            colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.grey,
+            ).copyWith(
+              secondary: ColorsModel.greyDark,
+            ),
+            fontFamily: "Inter",
           ),
-          fontFamily: "Inter",
+          debugShowCheckedModeBanner: true,
+          home: PokeDexPage(),
         ),
-        debugShowCheckedModeBanner: true,
-        home: PokeDexPage(),
       ),
     );
   }

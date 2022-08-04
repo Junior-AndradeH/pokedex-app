@@ -12,6 +12,7 @@ class PokemonData {
 
   List? abilities;
   List? forms;
+  List? stats;
   List? types;
 
   // constructor
@@ -26,6 +27,7 @@ class PokemonData {
     forms = map["forms"];
     species = map["species"];
     sprites = map["sprites"];
+    stats = map["stats"];
     types = map["types"];
     weight = map["weight"];
     height = map["height"];
@@ -40,6 +42,7 @@ class PokemonData {
       "forms": forms,
       "species": species,
       "sprites": sprites,
+      "stats": stats,
       "types": types,
       "weight": weight,
       "height": height,

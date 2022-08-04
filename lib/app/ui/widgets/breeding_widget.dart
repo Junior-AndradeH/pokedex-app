@@ -7,6 +7,7 @@ import 'package:pokedexapp/app/datas/species_data.dart';
 import 'package:http/http.dart' as http;
 
 import '../../models/colors_models.dart';
+import '../../models/pokemon_model.dart';
 
 // main class
 class BreedingWidget extends StatelessWidget {
@@ -27,14 +28,13 @@ class BreedingWidget extends StatelessWidget {
         future: _getFuture(context),
         builder: (context, snapshot) {
           if (!snapshot.hasData || snapshot.error != null) {
-            // model
-            _speciesData = SpeciesData();
-
-            // return
             return _columnNull(context);
           } else {
-            // model
+            // data
             _speciesData = SpeciesData.fromMap(snapshot.data!);
+
+            // model
+            PokemonModel.of(context).setSpeciesData(_speciesData!);
 
             // return
             return _columnData(context, _speciesData!);
@@ -46,9 +46,9 @@ class BreedingWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        _sizedBox(context, "Egg Groups", "0.0"),
+        _sizedBox(context, "Egg Groups", "NONE"),
         const SizedBox(height: 10.0),
-        _sizedBox(context, "Egg Cycle", "0.0"),
+        _sizedBox(context, "Egg Cycle", "NONE"),
       ],
     );
   }
@@ -56,15 +56,21 @@ class BreedingWidget extends StatelessWidget {
   Widget _columnData(BuildContext context, SpeciesData speciesData) {
     // set variables
     _eggGroups = SpeciesData.fromList(speciesData.eggGroups!, 0).name;
-    _eggCycle = SpeciesData.fromList(speciesData.eggGroups!, 1).name;
+    _eggCycle = speciesData.eggGroups!.length <= 1
+        ? _eggGroups
+        : SpeciesData.fromList(speciesData.eggGroups!, 1).name;
+
+    // convert
+    String eggGroups = PokemonModel.of(context).getString(_eggGroups!)!;
+    String eggCycle = PokemonModel.of(context).getString(_eggCycle!)!;
 
     // return
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        _sizedBox(context, "Egg Groups", _eggGroups!),
+        _sizedBox(context, "Egg Groups", eggGroups),
         const SizedBox(height: 10.0),
-        _sizedBox(context, "Egg Cycle", _eggCycle!),
+        _sizedBox(context, "Egg Cycle", eggCycle),
       ],
     );
   }
@@ -81,7 +87,7 @@ class BreedingWidget extends StatelessWidget {
                   fontSize: 16.0)),
           Positioned(
             left: 120.0,
-            child: Text(text.toUpperCase(),
+            child: Text(text,
                 style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,

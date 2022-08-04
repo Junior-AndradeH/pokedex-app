@@ -31,10 +31,12 @@ class ColorsModel {
 
   static const Color blueTransparent = Color.fromARGB(255, 32, 181, 186);
 
+  static const Color green = Color.fromARGB(255, 31, 197, 14);
+
   static const Color bug = Color.fromARGB(255, 156, 196, 49);
   static const Color dark = Color.fromARGB(255, 96, 92, 108);
   static const Color dragon = Color.fromARGB(255, 10, 116, 205);
-  static const Color eletric = Color.fromARGB(255, 255, 206, 75);
+  static const Color electric = Color.fromARGB(255, 255, 206, 75);
   static const Color fairy = Color.fromARGB(255, 239, 152, 231);
   static const Color fighting = Color.fromARGB(255, 216, 70, 82);
   static const Color fire = Color.fromARGB(255, 251, 108, 108);
@@ -45,7 +47,7 @@ class ColorsModel {
   static const Color ice = Color.fromARGB(255, 133, 208, 201);
   static const Color normal = Color.fromARGB(255, 156, 157, 164);
   static const Color poison = Color.fromARGB(255, 178, 102, 200);
-  static const Color psichic = Color.fromARGB(255, 248, 124, 127);
+  static const Color psychic = Color.fromARGB(255, 248, 124, 127);
   static const Color rock = Color.fromARGB(255, 206, 195, 142);
   static const Color steel = Color.fromARGB(255, 86, 149, 164);
   static const Color water = Color.fromARGB(255, 88, 170, 246);

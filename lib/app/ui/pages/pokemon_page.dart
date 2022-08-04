@@ -5,6 +5,9 @@ import 'package:pokedexapp/app/datas/pokemon_data.dart';
 import 'package:pokedexapp/app/datas/sprites_data.dart';
 import 'package:pokedexapp/app/datas/types_data.dart';
 import 'package:pokedexapp/app/ui/views/about_view.dart';
+import 'package:pokedexapp/app/ui/views/base_stats_view.dart';
+import 'package:pokedexapp/app/ui/views/evolution_view.dart';
+import 'package:pokedexapp/app/ui/views/moves_view.dart';
 import 'package:pokedexapp/app/ui/widgets/pokeball_widget.dart';
 import 'package:pokedexapp/app/ui/widgets/types_widget.dart';
 
@@ -78,13 +81,13 @@ class _PokemonPageState extends State<PokemonPage> {
 
   Widget _containerWallpaper(BuildContext context) {
     // set variables
-    Color color1 = PokeDexModel.of(context).getColor(_type0.toString())!;
-    Color color2 = PokeDexModel.of(context).getColor(_type1.toString())!;
+    Color color1 = PokedexModel.of(context).getColor(_type0.toString())!;
+    Color color2 = PokedexModel.of(context).getColor(_type1.toString())!;
 
     // return
     return Container(
       decoration: BoxDecoration(
-        gradient: PokeDexModel.of(context).getLinearGradient(color1, color2),
+        gradient: PokedexModel.of(context).getLinearGradient(color1, color2),
       ),
       height: 280.0,
     );
@@ -243,9 +246,9 @@ class _PokemonPageState extends State<PokemonPage> {
   Widget _widget() {
     return [
       AboutView(_pokemonData!),
-      AboutView(_pokemonData!),
-      AboutView(_pokemonData!),
-      AboutView(_pokemonData!),
+      BaseStatsView(_pokemonData!),
+      EvolutionView(_pokemonData!),
+      MovesView(_pokemonData!),
     ].elementAt(_pos!);
   }
 
