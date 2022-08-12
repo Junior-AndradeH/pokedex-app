@@ -18,6 +18,10 @@ class ImagesModel {
   static String get iconArrowLeftWhite => "assets/icons/arrow_left_white.png";
   static String get iconArrowLeftGrey => "assets/icons/arrow_left_grey.png";
   static String get iconArrowLeftGreyDark => "assets/icons/arrow_left_greyDark.png";
+  static String get iconArrowRight => "assets/icons/arrow_right.png";
+  static String get iconArrowRightWhite => "assets/icons/arrow_right_white.png";
+  static String get iconArrowRightGrey => "assets/icons/arrow_right_grey.png";
+  static String get iconArrowRightGreyDark => "assets/icons/arrow_right_greyDark.png";
   static String get iconBack => "assets/icons/back.png";
   static String get iconBackWhite => "assets/icons/back_white.png";
   static String get iconBarcode => "assets/icons/barcode.png";

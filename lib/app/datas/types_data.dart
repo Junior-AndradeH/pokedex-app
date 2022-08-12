@@ -23,6 +23,7 @@ class TypesData {
     map = Types(list[index]["type"]);
   }
 
+  // map to data
   Types(Map<String, dynamic> map) {
     // map to string
     url = map["url"];

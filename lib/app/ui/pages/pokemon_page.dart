@@ -11,7 +11,7 @@ import 'package:pokedexapp/app/ui/views/moves_view.dart';
 import 'package:pokedexapp/app/ui/widgets/pokeball_widget.dart';
 import 'package:pokedexapp/app/ui/widgets/types_widget.dart';
 
-import '../../models/colors_models.dart';
+import '../../models/colors_model.dart';
 import '../../models/images_model.dart';
 import '../../models/pokedex_model.dart';
 
@@ -73,7 +73,8 @@ class _PokemonPageState extends State<PokemonPage> {
           ),
           _containerWallpaper(context),
           _positioned(context),
-          _listView(context),
+          _columnAppBar(context),
+          _containerView(),
         ],
       ),
     );
@@ -94,33 +95,32 @@ class _PokemonPageState extends State<PokemonPage> {
   }
 
   Widget _containerSprite() {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-            image: NetworkImage(_sprite!),
-            fit: BoxFit.cover),
+    return Hero(
+      tag: "hero",
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: NetworkImage(_sprite!),
+              fit: BoxFit.cover),
+        ),
+        width: 160.0,
+        height: 160.0,
       ),
-      width: 160.0,
-      height: 160.0,
     );
   }
 
-  Widget _containerData(BuildContext context){
+  Widget _containerView() {
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(40.0),
-            topRight: Radius.circular(40.0)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      margin: const EdgeInsets.only(top: 325.0),
+      child: ListView(
+        padding: const EdgeInsets.all(0.0),
         children: <Widget>[
-          const SizedBox(height: 40.0),
-          _stack(context),
-          const SizedBox(height: 20.0),
-          _widget(),
-          const SizedBox(height: 40.0),
+          [
+            AboutView(_pokemonData!),
+            BaseStatsView(_pokemonData!),
+            EvolutionView(_pokemonData!),
+            MovesView(_pokemonData!),
+          ].elementAt(_pos!)
         ],
       ),
     );
@@ -134,9 +134,9 @@ class _PokemonPageState extends State<PokemonPage> {
     );
   }
 
-  Widget _listView(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(0.0),
+  Widget _columnAppBar(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const SizedBox(height: 35.0),
         SizedBox(
@@ -146,12 +146,12 @@ class _PokemonPageState extends State<PokemonPage> {
               Positioned(
                 left: 10.0,
                 right: 10.0,
-                child: _row(),
+                child: _row(context),
               ),
               Positioned(
                 top: 60.0,
                 left: 20.0,
-                child: _column(),
+                child: _columnData(),
               ),
               Positioned(
                 top: 50.0,
@@ -162,27 +162,27 @@ class _PokemonPageState extends State<PokemonPage> {
           ),
         ),
         const SizedBox(height: 10.0),
-        _containerData(context),
+        Container(
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(40.0),
+                topRight: Radius.circular(40.0)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const SizedBox(height: 40.0),
+              _stack(context),
+              const SizedBox(height: 10.0),
+            ],
+          ),
+        ),
       ],
     );
   }
 
-  Widget _row() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        _inkWellButton(context, 0, ImagesModel.iconArrowLeftWhite),
-        _inkWellButton(
-            context,
-            1,
-            _like == false
-                ? ImagesModel.iconHeartOutlineWhite
-                : ImagesModel.iconHeartSolidWhite),
-      ],
-    );
-  }
-
-  Widget _column() {
+  Widget _columnData() {
     // set variable
     if (_pokemonData!.id! < 10) {
       _register = "#00${_pokemonData!.id}";
@@ -219,6 +219,21 @@ class _PokemonPageState extends State<PokemonPage> {
     );
   }
 
+  Widget _row(BuildContext context){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        _inkWellButton(context, 0, ImagesModel.iconArrowLeftWhite),
+        _inkWellButton(
+            context,
+            1,
+            _like == false
+                ? ImagesModel.iconHeartOutlineWhite
+                : ImagesModel.iconHeartSolidWhite),
+      ],
+    );
+  }
+
   Widget _stack(BuildContext context) {
     return Stack(
       children: <Widget>[
@@ -241,15 +256,6 @@ class _PokemonPageState extends State<PokemonPage> {
         ),
       ],
     );
-  }
-
-  Widget _widget() {
-    return [
-      AboutView(_pokemonData!),
-      BaseStatsView(_pokemonData!),
-      EvolutionView(_pokemonData!),
-      MovesView(_pokemonData!),
-    ].elementAt(_pos!);
   }
 
   Widget _inkWellButton(BuildContext context, int index, String image) {

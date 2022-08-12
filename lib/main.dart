@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:pokedexapp/app/ui/pages/pokedex_page.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'app/models/colors_models.dart';
+import 'app/models/colors_model.dart';
+import 'app/models/evolution_model.dart';
+import 'app/models/moves_model.dart';
 import 'app/models/pokedex_model.dart';
 import 'app/models/pokemon_model.dart';
+import 'app/models/species_model.dart';
 
 // master function
 void main() {
@@ -22,18 +25,27 @@ class PokeDexAPP extends StatelessWidget {
       model: PokedexModel(),
       child: ScopedModel<PokemonModel>(
         model: PokemonModel(),
-        child: MaterialApp(
-          theme: ThemeData(
-            primaryColor: ColorsModel.greyDark,
-            colorScheme: ColorScheme.fromSwatch(
-              primarySwatch: Colors.grey,
-            ).copyWith(
-              secondary: ColorsModel.greyDark,
+        child: ScopedModel<SpeciesModel>(
+          model: SpeciesModel(),
+          child: ScopedModel<EvolutionModel>(
+            model: EvolutionModel(),
+            child: ScopedModel<MovesModel>(
+              model: MovesModel(),
+              child: MaterialApp(
+                theme: ThemeData(
+                  primaryColor: ColorsModel.greyDark,
+                  colorScheme: ColorScheme.fromSwatch(
+                    primarySwatch: Colors.grey,
+                  ).copyWith(
+                    secondary: ColorsModel.greyDark,
+                  ),
+                  fontFamily: "Inter",
+                ),
+                debugShowCheckedModeBanner: true,
+                home: const PokedexPage(),
+              ),
             ),
-            fontFamily: "Inter",
           ),
-          debugShowCheckedModeBanner: true,
-          home: PokeDexPage(),
         ),
       ),
     );

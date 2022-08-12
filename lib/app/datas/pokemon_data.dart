@@ -1,7 +1,9 @@
 // main class
 class PokemonData {
   // variables
+  String? urlType;
   String? name;
+  String? nameType;
 
   int? id;
   int? weight;
@@ -9,8 +11,10 @@ class PokemonData {
 
   Map<String, dynamic>? species;
   Map<String, dynamic>? sprites;
+  Map<String, dynamic>? type;
 
   List? abilities;
+  List? moves;
   List? forms;
   List? stats;
   List? types;
@@ -24,6 +28,7 @@ class PokemonData {
     id = map["id"];
     name = map["name"];
     abilities = map["abilities"];
+    moves = map["moves"];
     forms = map["forms"];
     species = map["species"];
     sprites = map["sprites"];
@@ -33,12 +38,27 @@ class PokemonData {
     height = map["height"];
   }
 
+  PokemonData.fromList(List list, int index) {
+    // list to map
+    type = list.isEmpty
+        ? {}
+        : Type(list[index]["type"]);
+  }
+
+  // map to data
+  Type(Map<String, dynamic> map) {
+    // map to string
+    urlType = map["url"];
+    nameType = map["name"];
+  }
+
   // string to map
   Map<String, dynamic> toMap() {
     return {
       "id": id,
       "name": name,
       "abilities": abilities,
+      "moves": moves,
       "forms": forms,
       "species": species,
       "sprites": sprites,

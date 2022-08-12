@@ -1,22 +1,16 @@
 // import
 import 'package:flutter/material.dart';
+import 'package:pokedexapp/app/datas/moves_data.dart';
 import 'package:pokedexapp/app/datas/pokemon_data.dart';
-import 'package:pokedexapp/app/datas/stats_data.dart';
-
-import '../../models/colors_models.dart';
+import 'package:pokedexapp/app/ui/widgets/moves_widget.dart';
 
 // main class
 class MovesView extends StatelessWidget {
   // variables
   PokemonData? _pokemonData;
+  MovesData? _movesData;
 
-  int? _hp;
-  int? _atk;
-  int? _def;
-  int? _spAtk;
-  int? _spDef;
-  int? _speed;
-  int? _total;
+  List<Widget>? _list;
 
   // constructor
   MovesView(this._pokemonData);
@@ -24,45 +18,37 @@ class MovesView extends StatelessWidget {
   // widget
   @override
   Widget build(BuildContext context) {
-    // set variables
-    _hp = StatsData.fromList(_pokemonData!.stats!, 0).baseStat;
-
-    // return
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-    );
-  }
-
-  Widget _sizedBox(
-      BuildContext context, String field, String text, double value) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: Stack(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(field,
-              style: const TextStyle(
-                  color: ColorsModel.grey,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0)),
-          Positioned(
-            left: 120.0,
-            child: Text(text,
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.0)),
+          const SizedBox(height: 20.0),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: _getList(context)!,
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 7.0, left: 170.0),
-            child: LinearProgressIndicator(
-              minHeight: 4.0,
-              backgroundColor: ColorsModel.grey,
-              color: ColorsModel.green,
-              value: value,
-            ),
-          ),
+          const SizedBox(height: 20.0),
         ],
       ),
     );
+  }
+
+  // function
+  List<Widget>? _getList(BuildContext context) {
+    // set variable
+    _list = [];
+
+    int index;
+    for (index = 0; index < _pokemonData!.moves!.length; index++) {
+      // data
+      _movesData = MovesData.fromMap(_pokemonData!.moves![index]);
+
+      // add to list
+      _list!.add(MovesWidget(_movesData!));
+    }
+
+    // return
+    return _list;
   }
 }

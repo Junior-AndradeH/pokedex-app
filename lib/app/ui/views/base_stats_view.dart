@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedexapp/app/datas/pokemon_data.dart';
 import 'package:pokedexapp/app/datas/stats_data.dart';
 
-import '../../models/colors_models.dart';
+import '../../models/colors_model.dart';
 
 // main class
 class BaseStatsView extends StatelessWidget {
@@ -39,6 +39,7 @@ class BaseStatsView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          const SizedBox(height: 20.0),
           _sizedBox(context, "HP", _hp!.toString(), _hp! / 100),
           const SizedBox(height: 10.0),
           _sizedBox(context, "Attack", _atk!.toString(), _atk! / 100),

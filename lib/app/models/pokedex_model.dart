@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedexapp/app/datas/pokedex_data.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'colors_models.dart';
+import 'colors_model.dart';
 
 // main class
 class PokedexModel extends Model {
@@ -30,6 +30,14 @@ class PokedexModel extends Model {
   }
 
   // function
+  PokedexData? getPokedexData() {
+    if (_pokedexData == null || _pokedexData == PokedexData()) {
+      _pokedexData = null;
+    }
+
+    return _pokedexData;
+  }
+
   Color? getColor(String text) {
     switch (text) {
       case "bug":
@@ -79,14 +87,6 @@ class PokedexModel extends Model {
     }
 
     return _list;
-  }
-
-  PokedexData? getPokedexData() {
-    if (_pokedexData == null || _pokedexData == PokedexData()) {
-      _pokedexData = null;
-    }
-
-    return _pokedexData;
   }
 
   LinearGradient? getLinearGradient(Color color1, Color color2) {

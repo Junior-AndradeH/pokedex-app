@@ -3,8 +3,7 @@ class MapsModel {
   // static
   static const Map<String, dynamic> pokemon1 = {
     "id": 1,
-    "image":
-        "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
+    "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
     "name": "Bulbasaur",
     "type": ["Grass", "Poison"],
     "weaknesses": ["Fire", "Psychic", "Flying", "Ice"],
@@ -29,22 +28,46 @@ class MapsModel {
     },
     "shyne": {
       "option": true,
-      "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
+      "image":
+          "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
     },
     "evolution": [
       {
         "id": 2,
         "level": 16,
-        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
+        "image":
+            "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
         "form": "Leaf Stone",
       },
       {
         "id": 3,
         "level": 32,
-        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
+        "image":
+            "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
         "form": "Leaf Stone",
       },
     ],
     "moves": [],
   };
+
+  static const List<String> list = [
+    "bug",
+    "dark",
+    "dragon",
+    "electric",
+    "fairy",
+    "fighting",
+    "fire",
+    "flying",
+    "ghost",
+    "grass",
+    "ground",
+    "ice",
+    "normal",
+    "poison",
+    "psychic",
+    "rock",
+    "steel",
+    "water",
+  ];
 }

@@ -1,10 +1,9 @@
 // import
 import 'package:flutter/material.dart';
 import 'package:pokedexapp/app/datas/pokemon_data.dart';
-import 'package:pokedexapp/app/datas/species_data.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'colors_models.dart';
+import 'colors_model.dart';
 
 // main class
 class PokemonModel extends Model {
@@ -14,7 +13,6 @@ class PokemonModel extends Model {
 
   // variables
   PokemonData? _pokemonData;
-  SpeciesData? _speciesData;
 
   String? _text;
 
@@ -33,13 +31,15 @@ class PokemonModel extends Model {
     notifyListeners();
   }
 
-  void setSpeciesData(SpeciesData speciesData) {
-    _speciesData = speciesData;
+  // function
+  PokemonData? getPokemonData() {
+    if (_pokemonData == null || _pokemonData == PokemonData()) {
+      _pokemonData = null;
+    }
 
-    notifyListeners();
+    return _pokemonData;
   }
 
-  // function
   String? getString(String text){
     String letter = text.replaceRange(1, text.length, "");
     String word = text.replaceRange(0, 1, "");
@@ -97,22 +97,6 @@ class PokemonModel extends Model {
     }
 
     return _list;
-  }
-
-  PokemonData? getPokemonData() {
-    if (_pokemonData == null || _pokemonData == PokemonData()) {
-      _pokemonData = null;
-    }
-
-    return _pokemonData;
-  }
-
-  SpeciesData? getSpeciesData() {
-    if (_speciesData == null || _speciesData == SpeciesData()) {
-      _speciesData = null;
-    }
-
-    return _speciesData;
   }
 
   LinearGradient? getLinearGradient(Color color1, Color color2) {

@@ -1,7 +1,7 @@
 // import
 import 'package:flutter/material.dart';
 
-import '../../models/colors_models.dart';
+import '../../models/colors_model.dart';
 
 // main class
 class TypesWidget extends StatelessWidget {
