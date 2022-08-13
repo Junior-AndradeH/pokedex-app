@@ -70,6 +70,7 @@ flutter:
     - assets/fonts/
     - assets/generation/
     - assets/icons/
+    - assets/images/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
@@ -85,16 +86,6 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/Inter/Inter-Regular.ttf
-        - asset: assets/fonts/Inter/Inter-Bold.ttf
-
-    - family: Lexend
-      fonts:
-        - asset: assets/fonts/Lexend/Lexend-Regular.ttf
-        - asset: assets/fonts/Lexend/Lexend-Bold.ttf
-
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto/Roboto-Regular.ttf
@@ -113,3 +104,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/pokedex.png"

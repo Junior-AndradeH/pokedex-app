@@ -38,28 +38,31 @@ class PokeDexWidget extends StatelessWidget {
     _color1 = PokedexModel.of(context).getColor(_type1!.toString())!;
 
     // return
-    return InkWell(
-      borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-      child: Container(
-        decoration: BoxDecoration(
-          gradient:
-          PokedexModel.of(context).getLinearGradient(_color0!, _color1!),
-          borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+    return Container(
+      margin: const EdgeInsets.only(right: 10.0, bottom: 10.0),
+      child: InkWell(
+        borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient:
+            PokedexModel.of(context).getLinearGradient(_color0!, _color1!),
+            borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+          ),
+          width: 180.0,
+          height: 150.0,
+          child: Stack(
+            children: <Widget>[
+              _positionedPokeball(context),
+              _positionedTypes(context),
+              _positionedSprites(context),
+            ],
+          ),
         ),
-        width: 180.0,
-        height: 150.0,
-        child: Stack(
-          children: <Widget>[
-            _positionedPokeball(context),
-            _positionedTypes(context),
-            _positionedSprites(context),
-          ],
-        ),
+        onTap: () {
+          // actived void
+          _setData(context);
+        },
       ),
-      onTap: () {
-        // actived void
-        _setData(context);
-      },
     );
   }
 

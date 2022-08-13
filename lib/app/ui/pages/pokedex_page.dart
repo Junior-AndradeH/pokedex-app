@@ -97,15 +97,13 @@ class _PokedexPageState extends State<PokedexPage> {
 
   Widget _listView(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.only(left: 20.0, right: 10.0),
       children: [
         const SizedBox(height: 40.0),
         _containerAppBar(context),
         const SizedBox(height: 20.0),
         Wrap(
           direction: Axis.horizontal,
-          spacing: 10.0,
-          runSpacing: 10.0,
           children: _getList(context)!,
         ),
         const SizedBox(height: 20.0),
@@ -116,26 +114,29 @@ class _PokedexPageState extends State<PokedexPage> {
   }
 
   Widget _containerAppBar(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            _inkWellAppBar(context, 0, ImagesModel.iconArrowLeftGreyDark),
-            _inkWellAppBar(context, 1, ImagesModel.iconFilter),
-          ],
-        ),
-        const SizedBox(height: 20.0),
-        Row(
-          children: <Widget>[
-            const SizedBox(width: 10.0),
-            Text(_region!,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 24.0)),
-          ],
-        ),
-      ],
+    return Container(
+      margin: const EdgeInsets.only(right: 10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              _inkWellAppBar(context, 0, ImagesModel.iconArrowLeftGreyDark),
+              _inkWellAppBar(context, 1, ImagesModel.iconFilter),
+            ],
+          ),
+          const SizedBox(height: 20.0),
+          Row(
+            children: <Widget>[
+              const SizedBox(width: 10.0),
+              Text(_region!,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 24.0)),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -299,7 +300,7 @@ class _PokedexPageState extends State<PokedexPage> {
           future: _getFuture(context, index),
           builder: (context, snapshot) {
             if (!snapshot.hasData || snapshot.error != null) {
-              return Container();
+              return const SizedBox(width: 0.0, height: 0.0);
             } else {
               // data
               _pokemonData = PokemonData.fromMap(snapshot.data!);
@@ -314,7 +315,7 @@ class _PokedexPageState extends State<PokedexPage> {
               // return
               return _filter == "all" || _filter == _type0 || _filter == _type1
                   ? PokeDexWidget(_pokemonData!)
-                  : Container();
+                  : const SizedBox(width: 0.0, height: 0.0);
             }
           });
 

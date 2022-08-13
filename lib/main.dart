@@ -39,7 +39,7 @@ class PokeDexAPP extends StatelessWidget {
                   ).copyWith(
                     secondary: ColorsModel.greyDark,
                   ),
-                  fontFamily: "Inter",
+                  fontFamily: "Roboto",
                 ),
                 debugShowCheckedModeBanner: true,
                 home: const HomeController(),
