@@ -1,6 +1,6 @@
 // import
 import 'package:flutter/material.dart';
-import 'package:pokedexapp/app/ui/pages/pokedex_page.dart';
+import 'package:pokedexapp/app/controllers/home_controller.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'app/models/colors_model.dart';
@@ -42,7 +42,7 @@ class PokeDexAPP extends StatelessWidget {
                   fontFamily: "Inter",
                 ),
                 debugShowCheckedModeBanner: true,
-                home: const PokedexPage(),
+                home: const HomeController(),
               ),
             ),
           ),

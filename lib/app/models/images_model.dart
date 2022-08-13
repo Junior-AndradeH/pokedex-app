@@ -1,14 +1,14 @@
 // main class
 class ImagesModel {
   // static
-  static String get iconHome => "assets/icons/home.png";
-  static String get iconHomeOutline => "assets/icons/home_outline.png";
-  static String get iconHomeSolid => "assets/icons/home_solid.png";
-  static String get iconDonation => "assets/icons/donation.png";
-  static String get iconDonationOutline => "assets/icons/donation_outline.png";
-  static String get iconDonationSolid => "assets/icons/donation_solid.png";
-  static String get iconSettingsOutline => "assets/icons/settings_outline.png";
-  static String get iconSettingsSolid => "assets/icons/settings_solid.png";
+  static String get imageAlola => "assets/generation/alola.jpg";
+  static String get imageGalar => "assets/generation/galar.jpg";
+  static String get imageHoenn => "assets/generation/hoenn.jpg";
+  static String get imageJohto => "assets/generation/johto.jpg";
+  static String get imageKalos => "assets/generation/kalos.jpg";
+  static String get imageKanto => "assets/generation/kanto.jpg";
+  static String get imageSinnoh => "assets/generation/sinnoh.jpg";
+  static String get imageUnova => "assets/generation/unova.jpg";
 
   static String get iconAccount => "assets/icons/account.png";
   static String get iconAdd => "assets/icons/add.png";
@@ -77,6 +77,8 @@ class ImagesModel {
   static String get iconFilter => "assets/icons/filter.png";
   static String get iconForward => "assets/icons/forward.png";
   static String get iconForwardWhite => "assets/icons/forward_white.png";
+  static String get iconGender => "assets/icons/gender.png";
+  static String get iconGenderColor => "assets/icons/gender_color.png";
   static String get iconGps => "assets/icons/gps.png";
   static String get iconGpsWhite => "assets/icons/gps_white.png";
   static String get iconGpsGrey => "assets/icons/gps_grey.png";
@@ -133,4 +135,6 @@ class ImagesModel {
   static String get iconTrashRed => "assets/icons/trash_red.png";
   static String get iconTrashGrey => "assets/icons/trash_grey.png";
   static String get iconType => "assets/icons/type.png";
+  static String get iconUnknown => "assets/icons/unknown.png";
+  static String get iconUnknownYellow => "assets/icons/unknown_yellow.png";
 }

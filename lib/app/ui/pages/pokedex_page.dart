@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pokedexapp/app/controllers/home_controller.dart';
 import 'package:pokedexapp/app/datas/pokemon_data.dart';
 import 'package:pokedexapp/app/ui/widgets/pokeball_widget.dart';
 import 'package:pokedexapp/app/ui/widgets/pokedex_widget.dart';
@@ -17,10 +18,20 @@ import '../../models/urls_model.dart';
 
 // main class
 class PokedexPage extends StatefulWidget {
-  const PokedexPage({Key? key}) : super(key: key);
+  // variables
+  String? _region;
 
+  int? _start;
+  int? _end;
+  int? _limit;
+
+  // constructor
+  PokedexPage(this._region, this._start, this._end, this._limit);
+
+  // widget
   @override
-  State<PokedexPage> createState() => _PokedexPageState();
+  State<PokedexPage> createState() =>
+      _PokedexPageState(_region, _start, _end, _limit);
 }
 
 // layout class
@@ -28,6 +39,7 @@ class _PokedexPageState extends State<PokedexPage> {
   // variables
   PokemonData? _pokemonData;
 
+  String? _region;
   String? _filter;
   String? _name;
   String? _type0;
@@ -43,13 +55,14 @@ class _PokedexPageState extends State<PokedexPage> {
   List<Widget>? _list;
   List<Widget>? _types;
 
+  // constructor
+  _PokedexPageState(this._region, this._start, this._end, this._limit);
+
   // widget
   @override
   Widget build(BuildContext context) {
     // set variable
     _pokedex ??= PokedexModel.of(context).getList();
-    _start = 0;
-    _end = 151;
     _filter ??= "all";
     _limit ??= 20;
 
@@ -115,10 +128,11 @@ class _PokedexPageState extends State<PokedexPage> {
         ),
         const SizedBox(height: 20.0),
         Row(
-          children: const <Widget>[
-            SizedBox(width: 10.0),
-            Text("Pokedex",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0)),
+          children: <Widget>[
+            const SizedBox(width: 10.0),
+            Text(_region!,
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: 24.0)),
           ],
         ),
       ],
@@ -153,7 +167,7 @@ class _PokedexPageState extends State<PokedexPage> {
         ),
         onTap: () {
           // actived void
-          _setData(context, type);
+          _setType(context, type);
         },
       ),
     );
@@ -174,6 +188,8 @@ class _PokedexPageState extends State<PokedexPage> {
         // actived void
         if (index == 1) {
           _setAlert(context);
+        } else {
+          _setData(context);
         }
       },
     );
@@ -243,13 +259,19 @@ class _PokedexPageState extends State<PokedexPage> {
             ));
   }
 
-  void _setData(BuildContext context, String type) {
+  void _setType(BuildContext context, String type) {
     setState(() {
       _filter = type;
     });
 
     // navigator
     Navigator.of(context).pop();
+  }
+
+  void _setData(BuildContext context) {
+    // navigator
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const HomeController()));
   }
 
   // function

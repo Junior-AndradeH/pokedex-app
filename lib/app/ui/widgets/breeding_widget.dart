@@ -95,25 +95,22 @@ class BreedingWidget extends StatelessWidget {
     }else if(speciesData.genderRate == 7){
       _widget = _rowStatic(ImagesModel.iconFemalePink, "Somente fêmea");
     }else{
-      _widget = _rowStatic(ImagesModel.iconMale, "Desconhecido");
+      _widget = _rowStatic(ImagesModel.iconUnknownYellow, "Desconhecido");
     }
 
     // return
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: Stack(
-        children: <Widget>[
-          const Text("Gênero",
-              style: TextStyle(
-                  color: ColorsModel.grey,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0)),
-          Positioned(
-            left: 120.0,
-            child: _widget!,
-          ),
-        ],
-      ),
+    return Stack(
+      children: <Widget>[
+        const Text("Gênero",
+            style: TextStyle(
+                color: ColorsModel.grey,
+                fontWeight: FontWeight.bold,
+                fontSize: 16.0)),
+        Container(
+          margin: const EdgeInsets.only(left: 120.0),
+          child: _widget!,
+        ),
+      ],
     );
   }
 
@@ -160,7 +157,7 @@ class BreedingWidget extends StatelessWidget {
   }
 
   Widget _rowGender(String text, String description) {
-    return Row(
+    return Wrap(
       children: <Widget>[
         Container(
           decoration: BoxDecoration(

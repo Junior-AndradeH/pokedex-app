@@ -34,9 +34,9 @@ class AboutView extends StatelessWidget {
 
     // convert
     String ability = PokemonModel.of(context).getString(_ability!)!;
-    String ocult = "(${PokemonModel.of(context).getString(_ocult!)!})";
-
-    String species = "None";
+    String ocult = _pokemonData!.abilities!.length <= 1
+        ? ""
+        : "(${PokemonModel.of(context).getString(_ocult!)!})";
 
     // return
     return Container(
@@ -45,8 +45,6 @@ class AboutView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const SizedBox(height: 20.0),
-          _sizedBox(context, "Espécie", species),
-          const SizedBox(height: 10.0),
           _sizedBox(
               context, "Altura", "${_height!.toStringAsFixed(2)} m"),
           const SizedBox(height: 10.0),
