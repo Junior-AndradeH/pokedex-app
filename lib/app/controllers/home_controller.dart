@@ -39,16 +39,16 @@ class HomeController extends StatelessWidget {
 
   Widget _listView(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 0.0),
       children: <Widget>[
         const SizedBox(height: 60.0),
-        const Text("Pokedex",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0)),
-        const SizedBox(height: 30.0),
         Container(
-          alignment: Alignment.center,
-          child: _wrap(context),
+          margin: const EdgeInsets.only(left: 20.0),
+          child: const Text("Pokedex",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0)),
         ),
+        const SizedBox(height: 30.0),
+        _wrap(context),
         const SizedBox(height: 20.0),
       ],
     );
@@ -58,6 +58,7 @@ class HomeController extends StatelessWidget {
     return Wrap(
       spacing: 10.0,
       runSpacing: 10.0,
+      alignment: WrapAlignment.center,
       children: <Widget>[
         _inkWell(
             context, ImagesModel.imageKanto, "I Geração", "Kanto", 0, 151, 20),
