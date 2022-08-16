@@ -97,14 +97,19 @@ class _PokedexPageState extends State<PokedexPage> {
 
   Widget _listView(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.only(left: 20.0, right: 10.0),
-      children: [
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      children: <Widget>[
         const SizedBox(height: 40.0),
         _containerAppBar(context),
         const SizedBox(height: 20.0),
-        Wrap(
-          direction: Axis.horizontal,
-          children: _getList(context)!,
+        Container(
+          alignment: Alignment.center,
+          child: Wrap(
+            spacing: 0.0,
+            runSpacing: 10.0,
+            alignment: WrapAlignment.start,
+            children: _getList(context)!,
+          ),
         ),
         const SizedBox(height: 20.0),
         _limit == _end ? Container() : _inkWellMore(context),
@@ -115,7 +120,7 @@ class _PokedexPageState extends State<PokedexPage> {
 
   Widget _containerAppBar(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(right: 10.0),
+      margin: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

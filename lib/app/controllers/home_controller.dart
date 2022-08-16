@@ -31,21 +31,24 @@ class HomeController extends StatelessWidget {
             child:
                 PokeballWidget(ImagesModel.iconPokeballGrey, 0.2, 250.0, 250.0),
           ),
-          _column(context),
+          _listView(context),
         ],
       ),
     );
   }
 
-  Widget _column(BuildContext context) {
+  Widget _listView(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       children: <Widget>[
         const SizedBox(height: 60.0),
         const Text("Pokedex",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0)),
-        const SizedBox(height: 40.0),
-        _wrap(context),
+        const SizedBox(height: 30.0),
+        Container(
+          alignment: Alignment.center,
+          child: _wrap(context),
+        ),
         const SizedBox(height: 20.0),
       ],
     );
@@ -53,8 +56,8 @@ class HomeController extends StatelessWidget {
 
   Widget _wrap(BuildContext context) {
     return Wrap(
-      spacing: 20.0,
-      runSpacing: 20.0,
+      spacing: 10.0,
+      runSpacing: 10.0,
       children: <Widget>[
         _inkWell(
             context, ImagesModel.imageKanto, "I Geração", "Kanto", 0, 151, 20),
@@ -92,7 +95,7 @@ class HomeController extends StatelessWidget {
             ),
           ],
         ),
-        width: 175.0,
+        width: 180.0,
         height: 150.0,
         child: Stack(
           children: <Widget>[

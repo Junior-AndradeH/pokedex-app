@@ -39,7 +39,7 @@ class PokeDexWidget extends StatelessWidget {
 
     // return
     return Container(
-      margin: const EdgeInsets.only(right: 10.0, bottom: 10.0),
+      margin: const EdgeInsets.only(right: 10.0),
       child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(15.0)),
         child: Container(
@@ -48,7 +48,7 @@ class PokeDexWidget extends StatelessWidget {
             PokedexModel.of(context).getLinearGradient(_color0!, _color1!),
             borderRadius: const BorderRadius.all(Radius.circular(15.0)),
           ),
-          width: 180.0,
+          width: 175.0,
           height: 150.0,
           child: Stack(
             children: <Widget>[
