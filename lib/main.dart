@@ -41,7 +41,7 @@ class PokeDexAPP extends StatelessWidget {
                   ),
                   fontFamily: "Roboto",
                 ),
-                debugShowCheckedModeBanner: true,
+                debugShowCheckedModeBanner: false,
                 home: const HomeController(),
               ),
             ),
