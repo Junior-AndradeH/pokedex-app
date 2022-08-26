@@ -46,12 +46,12 @@ class AboutView extends StatelessWidget {
         children: <Widget>[
           const SizedBox(height: 20.0),
           _sizedBox(
-              context, "Altura", "${_height!.toStringAsFixed(2)} m"),
+              context, "Height", "${_height!.toStringAsFixed(2)} m"),
           const SizedBox(height: 10.0),
           _sizedBox(
-              context, "Peso", "${_weight!.toStringAsFixed(2)} kg"),
+              context, "Weight", "${_weight!.toStringAsFixed(2)} kg"),
           const SizedBox(height: 10.0),
-          _sizedBox(context, "Habilidades", "$ability $ocult"),
+          _sizedBox(context, "Abilities", "$ability $ocult"),
           const SizedBox(height: 20.0),
           const Text("Breeding",
               style: TextStyle(

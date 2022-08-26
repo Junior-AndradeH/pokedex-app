@@ -65,7 +65,7 @@ class EvolutionView extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: 300.0,
             alignment: Alignment.center,
-            child: const Text("Única forma",
+            child: const Text("Only way",
                 style: TextStyle(
                     color: ColorsModel.grey,
                     fontWeight: FontWeight.bold,

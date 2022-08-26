@@ -248,10 +248,10 @@ class _PokemonPageState extends State<PokemonPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            _inkWellBar(context, 0, "Sobre"),
+            _inkWellBar(context, 0, "About"),
             _inkWellBar(context, 1, "Base Stats"),
-            _inkWellBar(context, 2, "Evoluções"),
-            _inkWellBar(context, 3, "Movimentos"),
+            _inkWellBar(context, 2, "Evolutions"),
+            _inkWellBar(context, 3, "Moves"),
           ],
         ),
       ],

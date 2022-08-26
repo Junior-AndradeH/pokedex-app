@@ -85,23 +85,23 @@ class BreedingWidget extends StatelessWidget {
   Widget _sizedBoxGenre(BuildContext context, SpeciesData speciesData) {
     // set variable
     if(speciesData.genderRate == 1){
-      _widget = _rowStatic(ImagesModel.iconMaleBlue, "Somente macho");
+      _widget = _rowStatic(ImagesModel.iconMaleBlue, "Male only");
     }else if(speciesData.genderRate == 2 || speciesData.genderRate == 3){
-      _widget = _rowGender(">", "maior chances para macho");
+      _widget = _rowGender(">", "Greater chances for male");
     }else if(speciesData.genderRate == 4){
-      _widget = _rowGender("=", "mesma taxa");
+      _widget = _rowGender("=", "Equal rate");
     }else if(speciesData.genderRate == 5 || speciesData.genderRate == 6){
-      _widget = _rowGender("<", "maior chances para fêmea");
+      _widget = _rowGender("<", "Greater chances for female");
     }else if(speciesData.genderRate == 7){
-      _widget = _rowStatic(ImagesModel.iconFemalePink, "Somente fêmea");
+      _widget = _rowStatic(ImagesModel.iconFemalePink, "Female only");
     }else{
-      _widget = _rowStatic(ImagesModel.iconUnknownYellow, "Desconhecido");
+      _widget = _rowStatic(ImagesModel.iconUnknownYellow, "Unknown");
     }
 
     // return
     return Stack(
       children: <Widget>[
-        const Text("Gênero",
+        const Text("Gender",
             style: TextStyle(
                 color: ColorsModel.grey,
                 fontWeight: FontWeight.bold,

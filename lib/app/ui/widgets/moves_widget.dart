@@ -31,8 +31,8 @@ class MovesWidget extends StatelessWidget {
         future: _getFuture(context),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return _container(context, "Carregando...", "Carregando...",
-                "Carregando...", ColorsModel.grey);
+            return _container(context, "Loading...", "Loading...",
+                "Loading...", ColorsModel.grey);
           } else if (snapshot.error != null) {
             return _container(context, "None", "None", "0", ColorsModel.grey);
           } else {
@@ -59,9 +59,9 @@ class MovesWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          _row("Tipo:", type, color),
-          _richText("Nome:", name),
-          _richText("Poder:", power),
+          _row("Type:", type, color),
+          _richText("Name:", name),
+          _richText("Power:", power),
         ],
       ),
     );
